@@ -15,12 +15,7 @@ app.config['MONGODB_SETTINGS'] = {
 }
 
 initialize_db(app)
-
-
-@app.route("/api")
-def index():
-    import_list_commits()
-    return Response("Hello", mimetype="application/json", status=200)
+import_list_commits()
 
 
 @app.route("/commits/weekly")
@@ -54,7 +49,7 @@ def show_monthly():
     return Response(json.dumps(list(data)), mimetype="application/json", status=200)
 
 
-@app.route("/committer")
+@app.route("/committers")
 def show_committer():
     pipeline = [
         {

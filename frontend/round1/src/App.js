@@ -3,15 +3,15 @@ import {Bar} from 'react-chartjs-2';
 import api from './api'
 import { useEffect } from 'react';
 import React from 'react';
-import Image from "react-bootstrap";
+import {Image, Badge} from "react-bootstrap";
 
 function App() {
   let [weeklycommitlabelData, setweeklycommitlabelData] = React.useState('')
   let [weeklycommitvalueData, setweeklycommitvalueData] = React.useState('')
   let [monthlycommitlabelData, setmonthlycommitlabelData] = React.useState('')
   let [monthlycommitvalueData, setmonthlycommitvalueData] = React.useState('')
-  let [committersData, setcommittersData] = React.useState('')
-  let [languagesData, setlanguagesData] = React.useState('')
+  let [committersData, setcommittersData] = React.useState([])
+  let [languagesData, setlanguagesData] = React.useState({})
 
   useEffect(() => {
     api.getWeeklyCommitsList()
@@ -26,10 +26,12 @@ function App() {
     })
     api.getCommittersList()
     .then((response)=>{
+        console.log(response.data)
         setcommittersData(response.data)
     })
     api.getLangaguesList()
     .then((response)=>{
+        console.log(response.data)
         setlanguagesData(response.data)
     })
   }, []);
@@ -62,6 +64,10 @@ function App() {
 
   return (
     <div className="App">
+      <div>
+        <h3>My solution: I get all commits in from 01/10 from api and store to mongo, after that I build apis to get data and render</h3>
+        <h3>I have problem with limitation of github api although I have used github personal token, I only get 1000 records per search so maybe data in this page isn't totally corrected</h3>
+      </div>
       <div class="container">
         <div class="col-2">
           <div>
@@ -88,9 +94,11 @@ function App() {
             }}
           />
         </div>
+        <ul></ul>
+        {Object.keys(languagesData).map(l => <li>{l}</li>)}
         </div>
         <div class="col-3">
-          Cot 3
+        {committersData.map(img =>  <Image src={img._id} rounded />)}
         </div>
       </div>
     </div>

@@ -1,3 +1,5 @@
+import os
+
 import requests
 from datetime import datetime
 from database.models import Commits
@@ -5,10 +7,11 @@ from database.models import Commits
 base_url = 'https://api.github.com'
 search_url = '/search/commits?q=repo:elastic/elasticsearch+committer-date:>2020-10-01&per_page=100&page='
 languages_url = '/repos/elastic/elasticsearch/languages'
-token = 'token cc15139cebfdcc0ac8fe1e4fcbf8ad20188ed501'
+token = f"token {os.environ['PERSONAL_ACCESS_TOKEN']}"
 
 
 def import_list_commits():
+    print('Syncing data')
     Commits.objects().delete()
     x = 1
     while x > 0:

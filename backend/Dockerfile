@@ -8,6 +8,7 @@ ENV PYTHONUNBUFFERED 1
 
 ADD requirements.txt .
 RUN python -m pip install -r requirements.txt
+RUN pip install -U flask-cors
 
 WORKDIR /app
 ADD . /app

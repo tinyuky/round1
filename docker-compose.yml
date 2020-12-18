@@ -42,6 +42,7 @@ services:
             MONGODB_HOST: mongodb
             MONGODB_USERNAME: "admin"
             MONGODB_PASSWORD: "password"
+            PERSONAL_ACCESS_TOKEN: "b51759e02ac3b8072a5fa74a608ca084d3027e72"
         volumes:
             - ./backend:/app
         depends_on: 
