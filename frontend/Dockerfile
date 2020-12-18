@@ -11,4 +11,3 @@ ENV PATH /app/round1/node_modules/.bin:$PATH
 RUN cd /app/round1
 RUN npm install
 RUN npm install react-scripts -g
-RUN npm start
