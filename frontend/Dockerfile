@@ -5,11 +5,10 @@ EXPOSE 35729
 
 WORKDIR /app
 
-ENV PATH /app/node_modules/.bin:$PATH
+ADD . /app
 
-COPY package.json /app/package.json
-COPY package-lock.json /app/package-lock.json
+ENV PATH /app/round1/node_modules/.bin:$PATH
+RUN cd /app/round1
 RUN npm install
 RUN npm install react-scripts -g
 
-ADD . /app
