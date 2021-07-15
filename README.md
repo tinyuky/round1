@@ -1,3 +1,6 @@
+DESCRIPTION:
+This a service alow us to know top committer, how many commits in a month of a github repository
+
 REQUIREMENT:
 - docker
 
